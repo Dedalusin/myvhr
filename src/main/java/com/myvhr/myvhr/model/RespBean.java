@@ -4,6 +4,12 @@ public class RespBean {
     private String status;
     private String msg;
 
+    public RespBean(String status, String msg) {
+
+        this.status = status;
+        this.msg = msg;
+    }
+
     public String getStatus() {
         return status;
     }

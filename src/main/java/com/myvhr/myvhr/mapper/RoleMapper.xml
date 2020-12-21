@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myvhr.myvhr.mapper.RoleMapper">
-    <select id="roles" resultType="org.sang.bean.Role">
+    <select id="getRoles" resultType="com.myvhr.myvhr.model.Role">
         SELECT * FROM role where id!=6;
     </select>
     <insert id="addNewRole">
