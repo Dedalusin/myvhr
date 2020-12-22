@@ -3,7 +3,13 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
-
+### cz ###
+node_modules
+package.json
+package-lock.json
+.cz-config.js
+commitlint.config.js
+husky.config.js
 ### STS ###
 .apt_generated
 .classpath
