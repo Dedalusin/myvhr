@@ -1,13 +1,14 @@
 package com.myvhr.myvhr.model;
 
-import java.sql.Timestamp;
-
-public class Position {
+public class Nation {
     private Long id;
     private String name;
-    private Timestamp createDate;
 
-    public Position() {
+    public Nation(String name) {
+        this.name = name;
+    }
+
+    public Nation() {
     }
 
     @Override
@@ -15,19 +16,14 @@ public class Position {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Position position = (Position) o;
+        Nation nation = (Nation) o;
 
-        return name != null ? name.equals(position.name) : position.name == null;
+        return name != null ? name.equals(nation.name) : nation.name == null;
     }
 
     @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
-    }
-
-    public Position(String name) {
-
-        this.name = name;
     }
 
     public Long getId() {
@@ -44,13 +40,5 @@ public class Position {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Timestamp getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Timestamp createDate) {
-        this.createDate = createDate;
     }
 }
