@@ -1,55 +1,140 @@
 package com.myvhr.myvhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Employee {
-    private Long id;
-    private String name;
-    private String gender;
-    private Date birthday;
-    private String idCard;
-    private String wedlock;
-    private Long nationId;
-    private String nationName;
-    private String nativePlace;
-    private String politicName;
-    private Long politicId;
-    private String email;
-    private String phone;
-    private String address;
-    private Long departmentId;
-    private String departmentName;
-    private Long jobLevelId;
-    private String jobLevelName;
-    private Long posId;
-    private String posName;
-    private String engageForm;
-    private String tiptopDegree;
-    private String specialty;
-    private String school;
-    private Date beginDate;
-    private String workState;
-    private String workID;
-    private Double contractTerm;
-    private Date conversionTime;
-    private Date notWorkDate;
-    private Date beginContract;
-    private Date endContract;
-    private Integer workAge;
-    private Department department;
-    private Nation nation;
-    private JobLevel jobLevel;
-    private Position position;
-    private PoliticsStatus politicsStatus;
+public class Employee implements Serializable {
+    private Integer id;
 
-    public String getPosName() {
-        return posName;
+    private String name;
+
+    private String gender;
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", gender='" + gender + '\'' +
+                ", birthday=" + birthday +
+                ", idCard='" + idCard + '\'' +
+                ", wedlock='" + wedlock + '\'' +
+                ", nationId=" + nationId +
+                ", nativePlace='" + nativePlace + '\'' +
+                ", politicId=" + politicId +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", departmentId=" + departmentId +
+                ", jobLevelId=" + jobLevelId +
+                ", posId=" + posId +
+                ", engageForm='" + engageForm + '\'' +
+                ", tiptopDegree='" + tiptopDegree + '\'' +
+                ", specialty='" + specialty + '\'' +
+                ", school='" + school + '\'' +
+                ", beginDate=" + beginDate +
+                ", workState='" + workState + '\'' +
+                ", workID='" + workID + '\'' +
+                ", contractTerm=" + contractTerm +
+                ", conversionTime=" + conversionTime +
+                ", notWorkDate=" + notWorkDate +
+                ", beginContract=" + beginContract +
+                ", endContract=" + endContract +
+                ", workAge=" + workAge +
+                ", nation=" + nation +
+                ", politicsstatus=" + politicsstatus +
+                ", department=" + department +
+                ", jobLevel=" + jobLevel +
+                ", position=" + position +
+                '}';
     }
 
-    public void setPosName(String posName) {
-        this.posName = posName;
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date birthday;
+
+    private String idCard;
+
+    private String wedlock;
+
+    private Integer nationId;
+
+    private String nativePlace;
+
+    private Integer politicId;
+
+    private String email;
+
+    private String phone;
+
+    private String address;
+
+    private Integer departmentId;
+
+    private Integer jobLevelId;
+
+    private Integer posId;
+
+    private String engageForm;
+
+    private String tiptopDegree;
+
+    private String specialty;
+
+    private String school;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date beginDate;
+
+    private String workState;
+
+    private String workID;
+
+    private Double contractTerm;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date conversionTime;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date notWorkDate;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date beginContract;
+
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date endContract;
+
+    private Integer workAge;
+    private Nation nation;
+    private PoliticsStatus politicsstatus;
+    private Department department;
+    private JobLevel jobLevel;
+    private Position position;
+    private Salary salary;
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
+    }
+    public Nation getNation() {
+        return nation;
+    }
+
+    public void setNation(Nation nation) {
+        this.nation = nation;
+    }
+
+    public PoliticsStatus getPoliticsstatus() {
+        return politicsstatus;
+    }
+
+    public void setPoliticsstatus(PoliticsStatus politicsstatus) {
+        this.politicsstatus = politicsstatus;
     }
 
     public Department getDepartment() {
@@ -58,14 +143,6 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
-    }
-
-    public Nation getNation() {
-        return nation;
-    }
-
-    public void setNation(Nation nation) {
-        this.nation = nation;
     }
 
     public JobLevel getJobLevel() {
@@ -84,19 +161,11 @@ public class Employee {
         this.position = position;
     }
 
-    public PoliticsStatus getPoliticsStatus() {
-        return politicsStatus;
-    }
-
-    public void setPoliticsStatus(PoliticsStatus politicsStatus) {
-        this.politicsStatus = politicsStatus;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -140,22 +209,12 @@ public class Employee {
         this.wedlock = wedlock;
     }
 
-    @JsonIgnore
-    public Long getNationId() {
+    public Integer getNationId() {
         return nationId;
     }
 
-    public void setNationId(Long nationId) {
+    public void setNationId(Integer nationId) {
         this.nationId = nationId;
-    }
-
-    @JsonIgnore
-    public String getNationName() {
-        return nationName;
-    }
-
-    public void setNationName(String nationName) {
-        this.nationName = nationName;
     }
 
     public String getNativePlace() {
@@ -166,21 +225,11 @@ public class Employee {
         this.nativePlace = nativePlace;
     }
 
-    @JsonIgnore
-    public String getPoliticName() {
-        return politicName;
-    }
-
-    public void setPoliticName(String politicName) {
-        this.politicName = politicName;
-    }
-
-    @JsonIgnore
-    public Long getPoliticId() {
+    public Integer getPoliticId() {
         return politicId;
     }
 
-    public void setPoliticId(Long politicId) {
+    public void setPoliticId(Integer politicId) {
         this.politicId = politicId;
     }
 
@@ -208,48 +257,27 @@ public class Employee {
         this.address = address;
     }
 
-    @JsonIgnore
-    public Long getDepartmentId() {
+    public Integer getDepartmentId() {
         return departmentId;
     }
 
-    public void setDepartmentId(Long departmentId) {
+    public void setDepartmentId(Integer departmentId) {
         this.departmentId = departmentId;
     }
 
-    @JsonIgnore
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
-    }
-
-    @JsonIgnore
-    public Long getJobLevelId() {
+    public Integer getJobLevelId() {
         return jobLevelId;
     }
 
-    public void setJobLevelId(Long jobLevelId) {
+    public void setJobLevelId(Integer jobLevelId) {
         this.jobLevelId = jobLevelId;
     }
 
-    @JsonIgnore
-    public String getJobLevelName() {
-        return jobLevelName;
-    }
-
-    public void setJobLevelName(String jobLevelName) {
-        this.jobLevelName = jobLevelName;
-    }
-
-    @JsonIgnore
-    public Long getPosId() {
+    public Integer getPosId() {
         return posId;
     }
 
-    public void setPosId(Long posId) {
+    public void setPosId(Integer posId) {
         this.posId = posId;
     }
 

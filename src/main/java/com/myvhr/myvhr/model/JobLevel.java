@@ -1,26 +1,31 @@
 package com.myvhr.myvhr.model;
 
-import java.sql.Timestamp;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
-public class JobLevel {
-    private Long id;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Objects;
+
+public class JobLevel implements Serializable {
+    private Integer id;
+
     private String name;
+
     private String titleLevel;
-    private Timestamp createDate;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         JobLevel jobLevel = (JobLevel) o;
-
-        return name != null ? name.equals(jobLevel.name) : jobLevel.name == null;
+        return Objects.equals(name, jobLevel.name);
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+
+        return Objects.hash(name);
     }
 
     public JobLevel() {
@@ -32,11 +37,16 @@ public class JobLevel {
         this.name = name;
     }
 
-    public Long getId() {
+    @JsonFormat(pattern = "yyyy-MM-dd",timezone = "Asia/Shanghai")
+    private Date createDate;
+
+    private Boolean enabled;
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -56,11 +66,19 @@ public class JobLevel {
         this.titleLevel = titleLevel;
     }
 
-    public Timestamp getCreateDate() {
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Timestamp createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
