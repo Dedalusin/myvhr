@@ -80,12 +80,12 @@ public class EmpBasicController {
 
     @RequestMapping(value = "/exportEmp", method = RequestMethod.GET)
     public ResponseEntity<byte[]> exportEmp() {
-        return PoiUtils.exportEmp2Excel(empService.getAllEmployees());
+        return PoiUtils.employee2Excel(empService.getAllEmployees());
     }
 
     @RequestMapping(value = "/importEmp", method = RequestMethod.POST)
     public RespBean importEmp(MultipartFile file) {
-        List<Employee> emps = PoiUtils.importEmp2List(file,empService.getAllNations(),empService.getAllPolitics(),departmentService.getAllDeps(),positionService.getAllPos(),jobLevelService.getAllJobLevels());
+        List<Employee> emps = PoiUtils.excel2Employee(file,empService.getAllNations(),empService.getAllPolitics(),departmentService.getAllDeps(),positionService.getAllPos(),jobLevelService.getAllJobLevels());
         if (empService.addEmps(emps) == emps.size()) {
             return new RespBean("success", "导入成功!");
         }

@@ -84,7 +84,7 @@ public class SystemBasicController {
     }
 
     @RequestMapping(value = "/dep/{did}", method = RequestMethod.DELETE)
-    public RespBean deleteDep(@PathVariable Long did) {
+    public RespBean deleteDep(@PathVariable int did) {
         if (departmentService.deleteDep(did) == 1) {
             return new RespBean("success", "删除成功!");
         }

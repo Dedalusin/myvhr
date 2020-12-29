@@ -25,7 +25,7 @@ public class DepartmentService {
      * @return
      * @description 父部门或部门底下仍有员工则无法删除
      */
-    public int deleteDep(Long did) {
+    public int deleteDep(int did) {
         Department department = new Department();
         department.setId(did);
         departmentMapper.deleteDep(department);
