@@ -4,6 +4,9 @@ import com.myvhr.myvhr.mapper.EmpMapper;
 import com.myvhr.myvhr.model.Employee;
 import com.myvhr.myvhr.model.Nation;
 import com.myvhr.myvhr.model.PoliticsStatus;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +22,9 @@ import java.util.List;
 public class EmpService {
     @Autowired
     EmpMapper empMapper;
+    @Autowired
+    RabbitTemplate rabbitTemplate;
+    public final static Logger logger = LoggerFactory.getLogger(EmpService.class);
     SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
     SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
     SimpleDateFormat birthdayFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -37,7 +43,12 @@ public class EmpService {
         Date endContract = employee.getEndContract();
         Double contractTerm = (Double.parseDouble(yearFormat.format(endContract)) - Double.parseDouble(yearFormat.format(beginContract))) * 12 + Double.parseDouble(monthFormat.format(endContract)) - Double.parseDouble(monthFormat.format(beginContract));
         employee.setContractTerm(Double.parseDouble(decimalFormat.format(contractTerm / 12)));
-        return empMapper.addEmp(employee);
+        int result = empMapper.addEmp(employee);
+        if (result == 1) {
+            logger.info(employee.toString());
+            rabbitTemplate.convertAndSend("employee.welcome", employee);
+        }
+        return result;
     }
 
     public Long getMaxId() {
